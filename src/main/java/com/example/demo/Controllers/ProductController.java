@@ -6,8 +6,10 @@ import com.example.demo.Models.Investor;
 import com.example.demo.Models.Products;
 import com.example.demo.Services.InvestorService;
 import com.example.demo.Services.ProductService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+// import io.swagger.annotations.Api;
+// import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = "products")
+// @Api(tags = "products")
+@Tag(name = "Product Controller", description = "Endpoints for managing products")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -31,14 +34,14 @@ public class ProductController {
 
     // Retrieve a list of products for a given investor
     @GetMapping("/{investorId}/products")
-    @ApiOperation(value = "Get products using investor id", response = Products.class)
-    public ResponseEntity<List<Products>> getInvestorProducts(@PathVariable Long investorId) {
+    @Operation(summary = "Get products using investor id")
+        public ResponseEntity<List<Products>> getInvestorProducts(@PathVariable Long investorId) {
         List<Products> products = investorService.getInvestorProducts(investorId);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    @ApiOperation(value = "Post new products after any change", response = Products.class)
+    @Operation(summary = "Post new products after any change")
     public ResponseEntity<String> createProduct(@RequestBody Products productRequest) {
         Investor investor = new Investor();
 

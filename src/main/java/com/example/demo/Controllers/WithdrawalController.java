@@ -5,14 +5,17 @@ package com.example.demo.Controllers;
 import com.example.demo.Models.Products;
 import com.example.demo.Models.Withdrawal;
 import com.example.demo.Services.WithdrawalService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+// import io.swagger.annotations.Api;
+// import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = "withdrawals")
+// @Api(tags = "withdrawals")  
+@Tag(name = "Withdrawal Controller", description = "Endpoints for managing withdrawals") 
 @RestController
 @RequestMapping("/api/withdrawals")
 public class WithdrawalController {
@@ -25,7 +28,7 @@ public class WithdrawalController {
     }
 
     @PostMapping("/{productId}/create")
-    @ApiOperation(value = "Post withdrawal using products id", response = Withdrawal.class)
+    @Operation(summary = "Post withdrawal using products id")   
     public ResponseEntity<String> createWithdrawal(
             @PathVariable Long productId,
             @RequestBody Withdrawal withdrawals) {

@@ -7,8 +7,8 @@ import com.example.demo.Models.Investor;
 import com.example.demo.Models.Withdrawal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface WithdrawalRepository extends JpaRepository<Investor, Long> {
-    static void save(Withdrawal newWithdrawal) {
+public interface WithdrawalRepository extends JpaRepository<Withdrawal, Long> {
+    // static void save(Withdrawal newWithdrawal) {
 
-    }
+    // }
 }

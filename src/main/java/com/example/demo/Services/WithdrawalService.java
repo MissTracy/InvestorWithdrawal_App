@@ -76,7 +76,7 @@ public class WithdrawalService {
         newWithdrawal.setProduct();
 
         // Save withdrawal record
-        WithdrawalRepository.save(newWithdrawal);
+        withdrawalRepository.save(newWithdrawal);
 
         // Update product's balance
         BigDecimal newBalance = product.getBalance().subtract(withdrawals.getAmount());
