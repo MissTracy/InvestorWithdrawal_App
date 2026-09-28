@@ -3,13 +3,13 @@ package com.example.demo.repos;
  JPA automatically generates the implementations of these methods based on the method names,
  allowing you to interact with the database without writing SQL queries**/
 
-import com.example.demo.Models.Investor;
-import com.example.demo.Models.Products;
+// import com.example.demo.Models.Investor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import java.util.List;
+
+import com.example.demo.Models.Products;
+// import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Products, Long> {
-//    List<Products> findByInvestor(Investor investor);
 }

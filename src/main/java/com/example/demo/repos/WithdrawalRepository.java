@@ -3,12 +3,16 @@ package com.example.demo.repos;
  JPA automatically generates the implementations of these methods based on the method names,
  allowing you to interact with the database without writing SQL queries**/
 
-import com.example.demo.Models.Investor;
-import com.example.demo.Models.Withdrawal;
+// import com.example.demo.Models.Investor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.example.demo.Models.Withdrawal;
+
+
+@Repository
 public interface WithdrawalRepository extends JpaRepository<Withdrawal, Long> {
-    // static void save(Withdrawal newWithdrawal) {
+ // static void save(Withdrawal newWithdrawal) {
 
     // }
 }
