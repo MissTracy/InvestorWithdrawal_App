@@ -16,7 +16,7 @@ import java.util.List;
 
 @Tag(name = "Investor Controller", description = "Endpoints for managing investors")
 @RestController
-@RequestMapping("/api/investors")
+@RequestMapping("/investors")
 public class InvestorController {
 
     private final InvestorService investorService;

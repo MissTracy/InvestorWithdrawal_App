@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 // @Api(tags = "withdrawals")  
 @Tag(name = "Withdrawal Controller", description = "Endpoints for managing withdrawals") 
 @RestController
-@RequestMapping("/api/withdrawals")
+@RequestMapping("/withdrawals")
 public class WithdrawalController {
 
     private final WithdrawalService withdrawalService;
