@@ -30,7 +30,7 @@ public class WithdrawalController {
         this.withdrawalService = withdrawalService;
     }
 
-    @PostMapping("/{productId}/create")
+    @PostMapping("/{productId}")
     @Operation(summary = "Post withdrawal using products id")   
     public ResponseEntity<String> createWithdrawal(
             @PathVariable Long productId,
