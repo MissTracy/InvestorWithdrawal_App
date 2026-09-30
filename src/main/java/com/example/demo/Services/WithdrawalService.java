@@ -1,5 +1,12 @@
 package com.example.demo.Services;
-/** services encapsulate the business logic.Methods perform specific operations on the data, **/
+/**services encapsulate the business logic.
+ * Methods perform specific operations on the data,
+ * and coordinate between controllers and repositories. **/
+
+import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.Models.Investor;
 import com.example.demo.Models.Products;
@@ -7,10 +14,6 @@ import com.example.demo.Models.Withdrawal;
 import com.example.demo.repos.InvestorRepository;
 import com.example.demo.repos.ProductRepository;
 import com.example.demo.repos.WithdrawalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 
 @Service

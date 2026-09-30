@@ -1,6 +1,7 @@
 package com.example.demo.Models;
-/**Models are entities of the app/data structures and are mapped to database tables **/
-
+/** Models represent the application's data as Java objects.
+ * They are mapped to database tables using JPA annotations.
+ */
 
 import java.math.BigDecimal;
 

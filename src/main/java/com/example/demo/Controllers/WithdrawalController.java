@@ -1,5 +1,7 @@
 package com.example.demo.Controllers;
-/**Controllers handle incoming HTTP requests, interact with clients and services methods to perform business logic**/
+/**Controllers handle incoming HTTP requests, 
+ * interact with clients and call services methods 
+ * to perform business logic**/
 
 
 import org.springframework.beans.factory.annotation.Autowired;

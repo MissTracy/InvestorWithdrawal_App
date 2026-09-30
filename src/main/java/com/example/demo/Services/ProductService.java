@@ -1,12 +1,16 @@
 package com.example.demo.Services;
-/** services encapsulate the business logic.Methods perform specific operations on the data, **/
+/**services encapsulate the business logic.
+ * Methods perform specific operations on the data,
+ * and coordinate between controllers and repositories. **/
 
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.Models.Products;
 import com.example.demo.repos.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.List;
 
 
 // manages operations related to the Product

@@ -1,14 +1,22 @@
 package com.example.demo.Models;
-/**Models are entities of the app/data structures and are mapped to database tables **/
-
-
-import jakarta.persistence.*;
+/** Models represent the application's data as Java objects.
+ * They are mapped to database tables using JPA annotations.
+ */
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Investor {
