@@ -5,6 +5,8 @@ package com.example.demo.Models;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,6 +37,7 @@ public class Products {
     @Enumerated(EnumType.STRING) // Use EnumType.STRING for storing enum values as strings
     private ProductType productType;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "investorId" , insertable = false, updatable = false)
     private Investor investor;
