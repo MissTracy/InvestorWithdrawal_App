@@ -23,12 +23,12 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public Long getProductId() {
+        return productId;
     }
 
-    public String getProductName() {
-        return productName;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     private String productName;
@@ -39,7 +39,7 @@ public class Products {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "investorId" , insertable = false, updatable = false)
+    @JoinColumn(name = "investorId", insertable = false, updatable = false)
     private Investor investor;
 
     public Products() {
@@ -52,42 +52,12 @@ public class Products {
         this.productType = productType;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
-    }
-
-
-    public enum ProductType {
-        RETIREMENT(1, "Retirement Account", BigDecimal.valueOf(500000.00)),
-        SAVINGS(2, "Savings Account", BigDecimal.valueOf(36000.00));
-
-        private final int productId;
-        private final String productName;
-        private final BigDecimal initialBalance;
-
-
-        ProductType(int productId, String productName, BigDecimal initialBalance) {
-            this.productId = productId;
-            this.productName = productName;
-            this.initialBalance = initialBalance;
-        }
-
-
-        public int getProductId() {
-            return productId;
-        }
-
-        public String getProductName() {
-            return productName;
-        }
-
-        public BigDecimal getInitialBalance() {
-            return initialBalance;
-        }
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public BigDecimal getBalance() {
@@ -98,6 +68,14 @@ public class Products {
         this.balance = balance;
     }
 
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
     public Investor getInvestor() {
         return investor;
     }
@@ -106,4 +84,24 @@ public class Products {
         this.investor = investor;
     }
 
+    public enum ProductType {
+        RETIREMENT("Retirement Account", BigDecimal.valueOf(500000.00)),
+        SAVINGS("Savings Account", BigDecimal.valueOf(36000.00));
+
+        private final String productName;
+        private final BigDecimal initialBalance;
+
+        ProductType(String productName, BigDecimal initialBalance) {
+            this.productName = productName;
+            this.initialBalance = initialBalance;
+        }
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public BigDecimal getInitialBalance() {
+            return initialBalance;
+        }
+    }
 }
