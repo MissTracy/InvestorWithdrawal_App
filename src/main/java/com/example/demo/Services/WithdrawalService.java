@@ -1,9 +1,11 @@
+```java
 package com.example.demo.Services;
 /**services encapsulate the business logic.
  * Methods perform specific operations on the data,
  * and coordinate between controllers and repositories. **/
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +15,27 @@ import com.example.demo.Models.Products;
 import com.example.demo.Models.Withdrawal;
 import com.example.demo.Models.WithdrawalRequest;
 import com.example.demo.repos.InvestorRepository;
-import com.example.demo.repos.ProductRepository;
 import com.example.demo.repos.WithdrawalRepository;
 
 
 @Service
 public class WithdrawalService {
 
-    private final ProductRepository productRepository;
     private final WithdrawalRepository withdrawalRepository;
     private final InvestorRepository investorRepository;
     private final ProductService productService;
 
     @Autowired
-    public WithdrawalService(ProductRepository productRepository, WithdrawalRepository withdrawalRepository,
+    public WithdrawalService(WithdrawalRepository withdrawalRepository,
                              InvestorRepository investorRepository, ProductService productService1) {
-        this.productRepository = productRepository;
         this.withdrawalRepository = withdrawalRepository;
         this.investorRepository = investorRepository;
         this.productService = productService1;
     }
 
     //withdrawals & withdrawal--variables:)
-        // Find the investor by ID
-        public boolean createWithdrawal(Long investorId, Long productId, WithdrawalRequest withdrawals) {
+    // Find the investor by ID
+    public boolean createWithdrawal(Long investorId, Long productId, WithdrawalRequest withdrawals) {
         Investor investor = investorRepository.findById(investorId).orElse(null);
         if (investor == null) {
             return false; // Investor not found
@@ -49,9 +48,7 @@ public class WithdrawalService {
         }
 
         // Check if the withdrawal amount is valid
-        //used BigInt and BigDec to correctly compare oprator other methods were not working-life problems
-        if (withdrawals.getAmount().compareTo(BigDecimal.ZERO) <= 0 ||
-                withdrawals.getAmount().toBigInteger().compareTo(product.getBalance().toBigInteger()) > 0) {
+        if (withdrawals.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             return false;
         }
 
@@ -75,6 +72,7 @@ public class WithdrawalService {
         if (withdrawalAmount.compareTo(maxWithdrawalAmount) > 0) {
             return false;
         }
+        
 
         // Create new withdrawal record
         Withdrawal newWithdrawal = new Withdrawal();
@@ -91,4 +89,12 @@ public class WithdrawalService {
 
         return true; // Withdrawal successful
     }
+
+    public List<Withdrawal> getAllWithdrawals() {
+        return withdrawalRepository.findAll();
+    }
 }
+
+
+
+

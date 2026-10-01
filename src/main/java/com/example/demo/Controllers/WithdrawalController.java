@@ -3,16 +3,19 @@ package com.example.demo.Controllers;
  * interact with clients and call services methods 
  * to perform business logic**/
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Models.Withdrawal;
 import com.example.demo.Models.WithdrawalRequest;
 import com.example.demo.Services.WithdrawalService;
 
@@ -50,5 +53,12 @@ public class WithdrawalController {
         } else {
             return new ResponseEntity<>("Withdrawal failed", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all withdrawals")
+    public ResponseEntity<List<Withdrawal>> getAllWithdrawals() {
+        List<Withdrawal> withdrawals = withdrawalService.getAllWithdrawals();
+        return new ResponseEntity<>(withdrawals, HttpStatus.OK);
     }
 }
