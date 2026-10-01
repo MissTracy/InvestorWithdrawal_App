@@ -18,13 +18,17 @@ public class Withdrawal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long investorId;
+    private Long withdrawalId;
 
     private BigDecimal amount;
 
     @ManyToOne
-    @JoinColumn(name = "investorId", insertable = false, updatable = false)
+    @JoinColumn(name = "investor_id")
     private Investor investor;
+
+    public Long getWithdrawalId() {
+        return withdrawalId;
+    }
 
     public Investor getInvestor() {
         return investor;
@@ -32,14 +36,6 @@ public class Withdrawal {
 
     public void setInvestor(Investor investor) {
         this.investor = investor;
-    }
-
-    public Long getInvestorId() {
-        return investorId;
-    }
-
-    public void setInvestorId(Long investorId) {
-        this.investorId = investorId;
     }
 
     public BigDecimal getAmount() {
@@ -51,7 +47,6 @@ public class Withdrawal {
     }
 
     public void setProduct() {
-
     }
 
 }

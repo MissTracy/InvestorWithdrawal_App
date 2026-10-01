@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Models.Withdrawal;
+import com.example.demo.Models.WithdrawalRequest;
 import com.example.demo.Services.WithdrawalService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-// @Api(tags = "withdrawals")  
 @Tag(name = "Withdrawal Controller", description = "Endpoints for managing withdrawals") 
 @RestController
 @RequestMapping("/withdrawals")
@@ -36,14 +35,16 @@ public class WithdrawalController {
     @Operation(summary = "Post withdrawal using products id")   
     public ResponseEntity<String> createWithdrawal(
             @PathVariable Long productId,
-            @RequestBody Withdrawal withdrawals) {
+            @RequestBody WithdrawalRequest withdrawals) {
 
-        //aag problem with id
-//        Long investorId = null;
         Long investorId = withdrawals.getInvestorId();
 
+        boolean withdrawalSuccessful = withdrawalService.createWithdrawal(
+                investorId, 
+                productId, 
+                withdrawals
+        );
 
-        boolean withdrawalSuccessful = withdrawalService.createWithdrawal(investorId, productId, withdrawals);
         if (withdrawalSuccessful) {
             return new ResponseEntity<>("Withdrawal created successfully", HttpStatus.CREATED);
         } else {

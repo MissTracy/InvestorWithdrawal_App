@@ -40,13 +40,19 @@ public class Investor {
 
     public int calculateAge() {
         if (dateOfBirth == null) {
-            return 0; // Handle the case where date of birth is not set
+            return 0;
         }
-
-        LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate currentDate = LocalDate.now();
-        return Period.between(birthDate, currentDate).getYears();
-    }
+    
+        LocalDate birthDate = dateOfBirth instanceof java.sql.Date
+                ? ((java.sql.Date) dateOfBirth).toLocalDate()
+                : dateOfBirth.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+    
+            LocalDate currentDate = LocalDate.now();
+        
+            return Period.between(birthDate, currentDate).getYears();
+        }
 
     public List<Withdrawal> getWithdrawals() {
         return withdrawals;

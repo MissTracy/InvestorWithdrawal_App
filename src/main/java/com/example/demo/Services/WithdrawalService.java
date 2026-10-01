@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.Models.Investor;
 import com.example.demo.Models.Products;
 import com.example.demo.Models.Withdrawal;
+import com.example.demo.Models.WithdrawalRequest;
 import com.example.demo.repos.InvestorRepository;
 import com.example.demo.repos.ProductRepository;
 import com.example.demo.repos.WithdrawalRepository;
@@ -26,7 +27,7 @@ public class WithdrawalService {
 
     @Autowired
     public WithdrawalService(ProductRepository productRepository, WithdrawalRepository withdrawalRepository,
-                             InvestorRepository investorRepository,  ProductService productService1) {
+                             InvestorRepository investorRepository, ProductService productService1) {
         this.productRepository = productRepository;
         this.withdrawalRepository = withdrawalRepository;
         this.investorRepository = investorRepository;
@@ -34,8 +35,8 @@ public class WithdrawalService {
     }
 
     //withdrawals & withdrawal--variables:)
-    public boolean createWithdrawal(Long investorId, Long productId, Withdrawal withdrawals) {
         // Find the investor by ID
+        public boolean createWithdrawal(Long investorId, Long productId, WithdrawalRequest withdrawals) {
         Investor investor = investorRepository.findById(investorId).orElse(null);
         if (investor == null) {
             return false; // Investor not found
@@ -53,13 +54,14 @@ public class WithdrawalService {
                 withdrawals.getAmount().toBigInteger().compareTo(product.getBalance().toBigInteger()) > 0) {
             return false;
         }
-        //Check if investor is eligible for retirement withdrawal
-        if ("RETIREMENT".equals(product.getProductType())) {
-            if (investor.calculateAge() <= 65) {
-                return false; //
-            }
 
+        //Check if investor is eligible for retirement withdrawal
+        if (Products.ProductType.RETIREMENT.equals(product.getProductType())) {
+            if (investor.calculateAge() <= 65) {
+                return false;
+            }
         }
+
         //Check Withdrawal amount exceeds current balance
         BigDecimal currentBalance = product.getBalance();
         BigDecimal withdrawalAmount = withdrawals.getAmount();
@@ -67,6 +69,7 @@ public class WithdrawalService {
         if (withdrawalAmount.compareTo(currentBalance) > 0) {
             return false;
         }
+
         // Check Withdrawal amount exceeds 90% of the current balance
         BigDecimal maxWithdrawalAmount = currentBalance.multiply(BigDecimal.valueOf(0.9)); // 90% of the current balance
         if (withdrawalAmount.compareTo(maxWithdrawalAmount) > 0) {
@@ -75,8 +78,8 @@ public class WithdrawalService {
 
         // Create new withdrawal record
         Withdrawal newWithdrawal = new Withdrawal();
+        newWithdrawal.setInvestor(investor);
         newWithdrawal.setAmount(withdrawals.getAmount());
-        newWithdrawal.setProduct();
 
         // Save withdrawal record
         withdrawalRepository.save(newWithdrawal);
