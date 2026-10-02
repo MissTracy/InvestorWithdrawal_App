@@ -55,10 +55,13 @@ public class WithdrawalController {
         }
     }
 
-    @GetMapping
-    @Operation(summary = "Get all withdrawals")
-    public ResponseEntity<List<Withdrawal>> getAllWithdrawals() {
-        List<Withdrawal> withdrawals = withdrawalService.getAllWithdrawals();
+    @GetMapping("/investor/{investorId}")
+    @Operation(summary = "Get withdrawals for an investor")
+    public ResponseEntity<List<Withdrawal>> getWithdrawalsByInvestor(
+            @PathVariable Long investorId) {
+
+        List<Withdrawal> withdrawals = withdrawalService.getWithdrawalsByInvestor(investorId);
+
         return new ResponseEntity<>(withdrawals, HttpStatus.OK);
     }
 }

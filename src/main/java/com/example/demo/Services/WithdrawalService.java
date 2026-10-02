@@ -90,8 +90,8 @@ public class WithdrawalService {
         return true; // Withdrawal successful
     }
 
-    public List<Withdrawal> getAllWithdrawals() {
-        return withdrawalRepository.findAll();
+    public List<Withdrawal> getWithdrawalsByInvestor(Long investorId) {
+        return withdrawalRepository.findByInvestor_Id(investorId);
     }
 }
 

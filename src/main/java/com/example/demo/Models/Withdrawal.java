@@ -5,6 +5,8 @@ package com.example.demo.Models;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-//class used to represent withdrawal request data
+//class used to represent withdrawal data
 @Entity
 public class Withdrawal {
 
@@ -22,6 +24,7 @@ public class Withdrawal {
 
     private BigDecimal amount;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "investor_id")
     private Investor investor;
@@ -50,3 +53,4 @@ public class Withdrawal {
     }
 
 }
+
