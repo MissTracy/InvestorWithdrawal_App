@@ -77,7 +77,7 @@ src
 ### Withdrawals
 
 * `POST /withdrawals/{productId}` – Create a withdrawal request
-* `GET /withdrawals` – Retrieve all withdrawal records
+* `GET /withdrawals/investor/{investorId}` – Retrieve all withdrawal belonging to an investor
 
 ## Key Learning Outcomes
 
