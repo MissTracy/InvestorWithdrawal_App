@@ -1,6 +1,10 @@
 # 💰 Investor Withdrawal App
 
-A backend REST API built with **Spring Boot** that manages the investor withdrawal process. The application manages investor information, investment products, and withdrawal requests while persisting data in a PostgreSQL database.
+A backend REST API built with **Spring Boot** for managing investors, investment products, and withdrawal requests, with PostgreSQL persistence and business-rule validation
+
+🔄 Project Update
+
+This project was originally developed using an older Swagger/Springfox implementation. It was subsequently updated to use Springdoc OpenAPI to maintain compatibility with the current Spring Boot setup, while also refining the API endpoints and withdrawal functionality.
 
 ## ▶️ How to Run
 Prerequisites: 
@@ -8,8 +12,7 @@ Prerequisites:
 *Java 17
 *PostgreSQL
 *Maven
-*Spring Boot
-*Spring Data JPA / Hibernate
+
 
 Steps: 
 * Clone the repository:
@@ -34,7 +37,7 @@ The REST API can then be tested through Swagger UI.
 * Create withdrawal requests
 * Validate withdrawal amounts and product balances
 * Apply retirement withdrawal eligibility rules
-* Retrieve all withdrawal records
+* Retrieve withdrawal records for a specific investor
 * RESTful API architecture
 * Data persistence with PostgreSQL
 * Interactive API documentation with Swagger/OpenAPI
@@ -79,19 +82,15 @@ src
 * `POST /withdrawals/{productId}` – Create a withdrawal request
 * `GET /withdrawals/investor/{investorId}` – Retrieve all withdrawal belonging to an investor
 
-## Key Learning Outcomes
+## Technical Implementation
 
-This project strengthened my understanding of:
-
-* Building RESTful APIs with Spring Boot
-* MVC architecture
-* Spring Data JPA
-* Database integration with PostgreSQL
-* CRUD operations
-* Layered application design
-* Request handling with DTO-style request models
-* Business-rule validation
-* API documentation using Swagger/OpenAPI
+*REST API development with Spring Boot
+*Spring Data JPA and PostgreSQL integration
+*Layered Controller/Service/Repository architecture
+*DTO-style request handling
+*Business-rule validation
+*CRUD operations
+*Swagger/OpenAPI API documentation
 
 ## 📸 Preview
 
